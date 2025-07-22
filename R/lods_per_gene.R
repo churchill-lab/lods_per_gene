@@ -133,7 +133,7 @@ write_lods <- function(dataset_id, start_id, end_id) {
     dataset <- qtl2api::get_dataset_by_id(dataset_id)
     dataset <- qtl2api::synchronize_dataset(dataset)
 
-    ds_addcovar <- qtl2api::get_covar_matrix(dataset)
+    ds_addcovar <- qtl2api:::get_covar_matrix(dataset)
     ds_addcovar <- ds_addcovar$covar_matrix
 
     # Map a bunch of genes
@@ -143,13 +143,13 @@ write_lods <- function(dataset_id, start_id, end_id) {
     scan1_obj <- qtl2::scan1(genoprobs = genoprobs, pheno = ds_expr, kinship = K, addcovar = ds_addcovar, cores = 20)
 
     print('Done scan, finding lods')
-    new_data <- find_qtl_per_gene(scan1_obj, map, dataset$annot_mrna)
+    new_data <- find_qtls_per_gene(scan1_obj, map, dataset$annot_mrna)
 
     print('Done finding local and max')
     file_name <- make.names(paste0(dataset_id, "_", start_id, "_", end_id, ".csv"))
 
     print(paste0('Dumping to file: ', file_name))
-    readr::write_csv(new_data, file = file_name, col_names = FALSE)
+    readr::write_csv(new_data, file = file_name, col_names = TRUE)
 
     print('Done')
 }

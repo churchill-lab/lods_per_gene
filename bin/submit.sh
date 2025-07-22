@@ -36,6 +36,6 @@ echo "Submitting SLURM array job with $num_jobs tasks to process $total_rows row
 # === Submit Job ===
 sbatch --array=0-${max_array_index} \
        --export=ALL,CONTAINER=$container,R_SCRIPT=$r_script,DATA_DIR=$data_dir,DB_FILE=$db_file,DATASET=$dataset,BATCH_SIZE=$batch_size,TOTAL_ROWS=$total_rows \
-       ./lods_per_gene/bin/lods_per_gene.sh
+       /flashscratch/mvincent/gbrs_qtl_lods/lods_per_gene/bin/lods_per_gene.sh
 
 
