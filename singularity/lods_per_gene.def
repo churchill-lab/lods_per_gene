@@ -1,0 +1,9 @@
+bootstrap: docker
+from:churchilllab/qtl2rest:0.6.5
+
+%labels
+    Author "Matthew Vincent"
+    Version v0.6.5
+
+%help
+    Help using the qtl2api package.
