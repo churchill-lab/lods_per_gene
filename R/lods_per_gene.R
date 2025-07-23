@@ -259,7 +259,7 @@ write_lods <- function(dataset_id, start_id, end_id) {
     scan1_obj <- qtl2::scan1(genoprobs = genoprobs, pheno = ds_expr, kinship = K, addcovar = ds_addcovar, cores = 20)
 
     print('Done scan, finding lods')
-    new_data <- find_qtls_per_gene_y(scan1_obj, map, dataset$annot_mrna)
+    new_data <- find_qtls_per_gene_y(scan1_obj[,,drop=FALSE], map, dataset$annot_mrna)
 
     print('Done finding local and max')
     file_name <- make.names(paste0(dataset_id, "_", start_id, "_", end_id, ".csv"))
