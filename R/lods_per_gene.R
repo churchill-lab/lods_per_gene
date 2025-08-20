@@ -19,7 +19,7 @@ map_list_to_tbl <- function(map) {
 
 
 # the main worker - FIXED VERSION
-find_qtls_per_gene <- function(scan1_obj, map, annotations, window_size = 2.5) {
+find_qtls_per_gene <- function(scan1_obj, map, annotations, window_size = 5.0) {
 
     # Step 0: Convert map to tibble
     map_tbl <- map_list_to_tbl(map)
@@ -141,7 +141,7 @@ find_qtls_per_gene <- function(scan1_obj, map, annotations, window_size = 2.5) {
 
 
 
-find_qtls_per_gene_ext <- function(scan1_obj, map, annotations, window_size = 2.5) {
+find_qtls_per_gene_ext <- function(scan1_obj, map, annotations, window_size = 5.0) {
 
     # Step 0: Convert map to tibble
     cat('Converting map to tibble\n')
