@@ -60,7 +60,11 @@ find_qtls_per_gene <- function(scan1_obj, map, annotations, window_size = 5.0) {
         dplyr::distinct(gene_id, symbol, chr_gene = chr, start)
 
     # fix if annotation `start` is in bp and convert to Mb
-    if (all(annotations_cleaned$start > 2e5, na.rm = TRUE)) {
+    # chr MT is a hassle
+    tmp <- annotations_cleaned |>
+        dplyr::filter(chr_gene != 'MT')
+
+    if (all(tmp$start > 2e5, na.rm = TRUE)) {
         annotations_cleaned$start <- annotations_cleaned$start / 1e6
     }
 
@@ -185,7 +189,11 @@ find_qtls_per_gene_ext <- function(scan1_obj, map, annotations, window_size = 5.
         dplyr::distinct()
 
     # fix if annotation `start` is in bp and convert to Mb
-    if (all(annotations_cleaned$start > 2e5, na.rm = TRUE)) {
+    # chr MT is a hassle
+    tmp <- annotations_cleaned |>
+        dplyr::filter(chr_gene != 'MT')
+
+    if (all(tmp$start > 2e5, na.rm = TRUE)) {
         annotations_cleaned$start <- annotations_cleaned$start / 1e6
     }
 
