@@ -140,7 +140,6 @@ find_qtls_per_gene <- function(scan1_obj, map, annotations, window_size = 5.0) {
 }
 
 
-
 find_qtls_per_gene_ext <- function(scan1_obj, map, annotations, window_size = 5.0) {
 
     # Step 0: Convert map to tibble
