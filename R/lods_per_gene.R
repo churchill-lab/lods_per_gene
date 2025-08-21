@@ -284,9 +284,9 @@ find_qtls_per_gene_ext <- function(scan1_obj, map, annotations, window_size = 5.
     region_lods_distal_ext <- annotations_cleaned |>
         dplyr::inner_join(lod_joined, by = 'gene_id') |>
         dplyr::mutate(
-            lower = pmax(0, ext_max_pos - window_size / 2.0),
-            upper = ext_max_pos + window_size / 2.0,
-            in_region = (chr == ext_max_chr) & (pos >= lower) & (pos <= upper)
+            lower = pmax(0, ext_distal_pos - window_size / 2.0),
+            upper = ext_distal_pos + window_size / 2.0,
+            in_region = (chr == ext_distal_chr) & (pos >= lower) & (pos <= upper)
         ) |>
         dplyr::group_by(gene_id) |>
         dplyr::summarize(
@@ -373,10 +373,10 @@ retrieve_lods_ext <- function(dataset_id, ext_file_name, start_id, end_id) {
         ext_max_chr = max_chr,
         ext_max_pos = max_pos,
         ext_max_lod = max_lod,
-        ext_max_id_outside = max_id_outside,
-        ext_max_chr_outside = max_chr_outside,
-        ext_max_pos_outside = max_pos_outside,
-        ext_max_lod_outside = max_lod_outside
+        ext_distal_id = distal_id,
+        ext_distal_chr = distal_chr,
+        ext_distal_pos = distal_pos,
+        ext_distal_lod = distal_lod
     )
 
     cat('Finding lods\n')
